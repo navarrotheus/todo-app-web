@@ -61,7 +61,7 @@ export class AuthService {
   signUp(bodyData: ISignUpBodyData) {
     this.isLoading = true;
     this.http.post(
-      'http://localhost:3333/users',
+      'https://to-do-app-br.herokuapp.com/users',
       bodyData
     ).subscribe(() => {
       this.isLoading = false;
@@ -76,7 +76,7 @@ export class AuthService {
   signIn(bodyData: ISignInBodyData) {
     this.isLoading = true;
     this.http.post(
-      'http://localhost:3333/sessions',
+      'https://to-do-app-br.herokuapp.com/sessions',
       bodyData
     ).subscribe(({ token, user }: ISignInResponseData) => {
       this.isLoading = false;

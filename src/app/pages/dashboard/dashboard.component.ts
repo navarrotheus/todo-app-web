@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.isFetching = true;
-    this.http.get('http://localhost:3333/tasks', {
+    this.http.get('https://to-do-app-br.herokuapp.com/tasks', {
       headers: new HttpHeaders({ 'Authorization': `Bearer ${this.authService.getToken()}` })
     }).subscribe(data => {
       this.isFetching = false;
@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
 
   onCheckmarkClick(i: number, task_id: string) {
     this.tasks[i].isUpdatingStatus = true;
-    this.http.patch(`http://localhost:3333/tasks/${task_id}`, null, {
+    this.http.patch(`https://to-do-app-br.herokuapp.com/tasks/${task_id}`, null, {
       headers: new HttpHeaders({ 'Authorization': `Bearer ${this.authService.getToken()}` })
     }).subscribe((data) => {
       const { done_at } = data as Task;
@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit {
     }
 
     this.isCreatingTask = true;
-    this.http.post('http://localhost:3333/tasks', formData, {
+    this.http.post('https://to-do-app-br.herokuapp.com/tasks', formData, {
       headers: new HttpHeaders({ 'Authorization': `Bearer ${this.authService.getToken()}` })
     }).subscribe(data => {
       this.isCreatingTask = false;
@@ -116,7 +116,7 @@ export class DashboardComponent implements OnInit {
 
     this.tasks[taskIndex].isUpdatingStatus = true;
 
-    this.http.delete(`http://localhost:3333/tasks/${this.selectedTaskModel.id}`, {
+    this.http.delete(`https://to-do-app-br.herokuapp.com/tasks/${this.selectedTaskModel.id}`, {
       headers: new HttpHeaders({ 'Authorization': `Bearer ${this.authService.getToken()}` })
     }).subscribe(() => {
       const taskIndex = this.tasks.findIndex(task => task.id === this.selectedTaskModel.id);
@@ -156,7 +156,7 @@ export class DashboardComponent implements OnInit {
 
     this.tasks[taskIndex].isUpdatingStatus = true;
 
-    this.http.put(`http://localhost:3333/tasks/${task_id}`, formData, {
+    this.http.put(`https://to-do-app-br.herokuapp.com/tasks/${task_id}`, formData, {
       headers: new HttpHeaders({ 'Authorization': `Bearer ${this.authService.getToken()}` })
     }).subscribe(data => {
       this.tasks[taskIndex].isUpdatingStatus = false;
